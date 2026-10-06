@@ -1,0 +1,25 @@
+services:
+  claude:
+    dns:
+      - ${DOCKER_GATEWAY:?}
+    networks:
+      - claude-net
+    build:
+      context: .
+
+    environment:
+      TERM: xterm-256color
+      COLORTERM: truecolor
+      CLAUDE_CONFIG_DIR: /home/node/.claude
+
+    stdin_open: true
+    tty: true
+
+    volumes:
+      - ./workspace:/workspace
+      - ./data:/home/node/.claude
+
+networks:
+  claude-net:
+    external: true
+    name: ${NETWORK_NAME:?}
