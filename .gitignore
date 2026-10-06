@@ -1,0 +1,4 @@
+data/
+workspace/
+profile/*
+!profile/user.js
